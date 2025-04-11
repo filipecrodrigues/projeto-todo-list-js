@@ -4,7 +4,10 @@ const todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
 const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
-const cancelEditBtn= document.querySelector("#cancel-edit-btn");
+const cancelEditBtn = document.querySelector("#cancel-edit-btn");
+const searchInput = document.querySelector("#search-input");
+const eraseBtn =document.querySelector("#erase-button");
+const filterBtn =document.querySelector("#filter-select");
 
 //variavel input que será editado
 let oldInputValue;
@@ -55,7 +58,7 @@ const toggleForms =() =>{
 
 const updateTodo =(text) =>{
     const todos =document.querySelectorAll(".todo")
-    //percorrer os todos
+    //percorrer os todos 
     todos.forEach((todo) =>{
         let todoTitle = todo.querySelector("h3")
         if(todoTitle.innerText === oldInputValue){
@@ -64,6 +67,25 @@ const updateTodo =(text) =>{
     })
 
 }
+//função de busca
+
+const getSearchTodos = (search) => {
+    const todos = document.querySelectorAll(".todo");
+    //percorrer os todos
+    todos.forEach((todo) => {
+     let todoTitle = todo.querySelector("h3").innerText.toLowerCase(); //lowercase independete se for digitado com cpaslook
+        
+        const normalizedSearch = search.toLowerCase(); // normalizar a busca
+        
+        todo.style.display = "flex";
+
+        if(!todoTitle.includes(normalizedSearch)){//condição de não possuir o search
+        todo.style.display = "none";
+    }
+    
+    });
+};
+
 //Eventos
 todoForm.addEventListener("submit",(e) =>{
         e.preventDefault();
@@ -120,4 +142,21 @@ editForm.addEventListener("submit", (e)=>{
         updateTodo(editInputValue)
 
     toggleForms()
+});
+
+//evento de busca
+
+searchInput.addEventListener("keyup", (e) => {
+    const search = e.target.value;
+
+    getSearchTodos(search) //chamar a função com parametro de busca
+});
+
+
+//evento para habilitar botão de limpar busca
+
+eraseBtn.addEventListener ("click", (e) =>{
+    e.preventDefault() // para não enviar o formulário
+    searchInput.value = ""//zerar o valor de search
+    searchInput.dispatchEvent(new Event("keyup")); //voltar com os inputs
 });
