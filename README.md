@@ -3,7 +3,7 @@
 Uma aplicação web de Lista de Tarefas com alguns recursos a mais como a função de filtrar as tarefas e persistindo os dados na local storage do navegador, construída com JavaScript puro, esta lista
 permite  criar, editar, concluir, excluir, pesquisar e filtrar tarefas. A aplicação persiste dados usando o localStorage do navegador, garantindo que suas tarefas permaneçam salvas mesmo após fechar o navegador.
 
-## 📋 Funcionalidades
+## Funcionalidades
 
 - **Criar tarefas**: Adicione novas tarefas à sua lista
 - **Editar tarefas**: Modifique descrições de tarefas existentes
@@ -13,7 +13,7 @@ permite  criar, editar, concluir, excluir, pesquisar e filtrar tarefas. A aplica
 - **Filtragem de tarefas**: Visualize todas as tarefas, tarefas concluídas ou tarefas pendentes
 - **Persistência de dados**: As tarefas são salvas no armazenamento local
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - HTML5
 - CSS3
@@ -21,7 +21,7 @@ permite  criar, editar, concluir, excluir, pesquisar e filtrar tarefas. A aplica
 - Ícones Font Awesome
 - API de Local Storage
 
-## 💡 Estrutura do Projeto
+## Estrutura do Projeto
 
 - **HTML**: Estrutura e elementos da aplicação de tarefas (não incluído no código fornecido)
 - **CSS**: Estilização e design responsivo (não incluído no código fornecido)
