@@ -224,13 +224,8 @@ const saveTodosLocalStorage = (todo) =>{
 
     todos.push(todo)
     localStorage.setItem("todos", JSON.stringify(todos))
-
 }
-
-
-
 //removendo os todos
-
 const removeTodosLocalStorage = (todoText) =>{
     const todos =getTodosLocalStorage();
     const filterTodos = todos.filter((todo) => todo.text !== todoText);
