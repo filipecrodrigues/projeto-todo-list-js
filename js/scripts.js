@@ -14,7 +14,7 @@ let oldInputValue;
 
 //Funções
 
-const saveTodo = (text) =>{
+const saveTodo = (text, done =0, save = 1) =>{
     const todo = document.createElement("div");
     todo.classList.add("todo");
 
@@ -38,6 +38,15 @@ todo.appendChild(todoTitle);
     deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
     todo.appendChild(deleteBtn)
 
+
+ //Utilizando dados da local storage
+    if(done){
+        todo.classList("done")
+    }
+    if(save){
+        saveTodosLocalStorage({text, done: 0})
+    }
+ 
 //colocar o todo na lista geral todo-list
     todoList.appendChild(todo);
 //limpar o input depois que o usuário diditar
@@ -189,3 +198,21 @@ filterBtn.addEventListener("change", (e) => {
     
     filterTodos(filterValue);
 })
+
+//Local Storage persistindo os dados
+
+//buscar os todos no local Storage
+
+const getTodosLocalStorage = () =>{
+    const todos = JSON.parse(localStorage.getItem("todos")) || [] 
+    return todos
+}
+
+//salvando as tarefas no local storage
+const saveTodosLocalStorage = (todo) =>{
+    const todos =getTodosLocalStorage()
+
+    todos.push(todo)
+    localStorage.setItem("todos", JSON.stringify(todos))
+
+}
