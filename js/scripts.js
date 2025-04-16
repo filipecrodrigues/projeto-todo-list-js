@@ -143,6 +143,8 @@ document.addEventListener("click", (e)=>{
     }
     if(targetEl.classList.contains("remove-todo")){
         parentEl.remove(); //ecluir tarefa
+
+        removeTodosLocalStorage(todoTitle);
     }
     if(targetEl.classList.contains("edit-todo")){
         toggleForms();//editar tarefa
@@ -150,7 +152,7 @@ document.addEventListener("click", (e)=>{
         editInput.value = todoTitle; //editando valor do input
         oldInputValue = todoTitle;
     }
-
+    
 });
 
 //Evento cancelar edição
@@ -208,11 +210,30 @@ const getTodosLocalStorage = () =>{
     return todos
 }
 
+//carregando os todos
+const loadTodos =() =>{
+    const todos =getTodosLocalStorage();
+    todos.forEach((todo) =>{
+        saveTodo(todo.text,todo.done,0)
+    })
+}
+
 //salvando as tarefas no local storage
 const saveTodosLocalStorage = (todo) =>{
-    const todos =getTodosLocalStorage()
+    const todos =getTodosLocalStorage();
 
     todos.push(todo)
     localStorage.setItem("todos", JSON.stringify(todos))
 
 }
+
+
+
+//removendo os todos
+
+const removeTodosLocalStorage = (todoText) =>{
+    const todos =getTodosLocalStorage();
+    const filterTodos = todos.filter((todo) => todo.text !== todoText);
+    localStorage.setItem("todos", JSON.stringify(filterTodos));
+}
+loadTodos();
