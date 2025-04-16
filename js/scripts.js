@@ -72,6 +72,7 @@ const updateTodo =(text) =>{
         let todoTitle = todo.querySelector("h3")
         if(todoTitle.innerText === oldInputValue){
             todoTitle.innerText =text;
+            updateTodoLocalStorage(oldInputValue, text)
         }
     })
 
@@ -140,6 +141,7 @@ document.addEventListener("click", (e)=>{
 
     if(targetEl.classList.contains("finish-todo")){ //marcar como feito tarefa
         parentEl.classList.toggle("done");
+        updateTodosStatusLocalStorage(todoTitle);
     }
     if(targetEl.classList.contains("remove-todo")){
         parentEl.remove(); //ecluir tarefa
@@ -227,8 +229,27 @@ const saveTodosLocalStorage = (todo) =>{
 }
 //removendo os todos
 const removeTodosLocalStorage = (todoText) =>{
-    const todos =getTodosLocalStorage();
+    const todos = getTodosLocalStorage();
     const filterTodos = todos.filter((todo) => todo.text !== todoText);
     localStorage.setItem("todos", JSON.stringify(filterTodos));
+}
+
+//atualizando status local storage
+const updateTodosStatusLocalStorage = (todoText) =>{
+    const todos = getTodosLocalStorage();
+   
+    todos.map((todo) => 
+    todo.text === todoText ? (todo.done = !todo.done): null
+);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+//atualizando o texto na local Storage
+const updateTodoLocalStorage = (todoOldText, todoNewText ) =>{
+    const todos = getTodosLocalStorage();
+    
+    todos.map((todo) => 
+        todo.text === todoOldText ? (todo.text = todoNewText): null
+);
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 loadTodos();
