@@ -23,8 +23,8 @@ permite  criar, editar, concluir, excluir, pesquisar e filtrar tarefas. A aplica
 
 ## Estrutura do Projeto
 
-- **HTML**: Estrutura e elementos da aplicação de tarefas (não incluído no código fornecido)
-- **CSS**: Estilização e design responsivo (não incluído no código fornecido)
+- **HTML**: Estrutura e elementos da aplicação de tarefas 
+- **CSS**: Estilização e design responsivo 
 - **JavaScript**: Funcionalidade principal e lógica
   - Funções de gerenciamento de tarefas
   - Manipuladores de interação da interface
